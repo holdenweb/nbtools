@@ -1,0 +1,38 @@
+See Jessica's Outline below:
+Part I
+--------
+
+0 - .5hr: Environment setup: installing Python, installing a text editor,
+basic command line navigation.
+
+.5 - 1: Python basic: math, variables, types, strings.
+
+1 - 1.5: Making choices: booleans, if/elif/else, compound conditionals.
+
+1.5 - 2: Writing and running Python scripts.
+
+2 - 3: Lists and loops.
+
+3 - 4: Dictionaries, functions, and modules.
+
+Projects:
+
+- Wordplay (30 minutes)
+- ColorWall (30 minutes)
+- Twitter (30 minutes)
+
+
+Part II
+---------
+
+0 - .5: File I/O, optional and named arguments
+.5 - 1: List comprehensions
+1 - 1.5: Classes
+1.5 - 2: Errors and exceptions
+2 - 3: Algorithms and data structures 101
+
+Projects:
+
+- Flash card quizzer (30 minutes)
+- Databases and Jeopardy (30 minutes)
+- Plotting data with matplotlib (30 minutes)
