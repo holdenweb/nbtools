@@ -1,85 +1,84 @@
-The IPython Notebook: Introduction and demonstration
-Using a source code control system with the IPython Notebook
-How classes work: Instance creation
-How classes work: Writing objects that respond to Python operators
-Generality of function return values
-Functions as function arguments
-Introducing decorators
-Accessing IPython Notebook on the cloud
+Welcome to Class
+Introducing the IPython Notebook
+Accessing IPython Notebook on the Cloud
+Writing Objects That Respond to Python Operators
+Generality of Function Return Values
+Functions as Function Arguments
+Introducing Decorators
 Tuples
-The Python iteration protocol
+The Python Iteration Protocol
 Iteration in Python
-Writing iterable objects
-Advanced slicing
-List comprehensions
-Set comprehensions
-Dict comprehensions
+Writing Iterable Objects
+Advanced Slicing
+List Comprehensions
+Set Comprehensions
+Dict Comprehensions
 Generators
-Generator expressions
-The difference between iterables and iterators
-Importing modules
-The function API - signatures and specifications
-Python namespaces
-Callable instances
-A look at internal CPython interpreter code
-PEP 8 Python style
-Reloading modules
-Structuring packages
+Generator Expressions
+The Difference Between Iterables and Iterators
+Importing Modules
+The Function API - Signatures and Specifications
+Python Namespaces
+Callable Instances
+A Look at Internal CPython Interpreter Code
+PEP 8 Python Style
+Reloading Modules
+Structuring Packages
 What is Unicode
 Decoding to Unicode
 Encoding from Unicode
-Regular expressions
-How these lessons were created
-Using JSON for persistent storage
+Regular Expressions
+Using JSON for Persistent Storage
 The Python DBAPI
 Elementary SQL [plug OST SQL classes]
-Brief description of ORM principles (code on slides only)
+Brief Description of ORM Principles (code on slides only)
 Visual Python
 Numpy
 SciPy
 Pandas
 matplotlib
-Distributing your code
-Config files
-Struct module
-Consuming JSON data from a web service
-Bytearrays and bytestrings
-Unit testing
-Mock objects
+Distributing Your Code
+Config Files
+Struct Module
+Consuming JSON Data from a Web Service
+Bytearrays and Bytestrings
+Unit Testing
+Mock Objects
 Python Anywhere
 Decimal
-Names to avoid, and why
-Reading and writing files
-import as 
+Names to Avoid, and Why
+Reading and Writing Files
+import ... as ...
 from ... import 
-Handling filenames
-The Requests library
+Handling Filenames
+The Requests Library
 
 
-HISTORICAL, HUMOROUS AND WHIMSICAL SNIPPETS (max 30 seconds each)
+HISTORICAL, HUMOROUS AND WHIMSICAL SNIPPETS
 
 import this
-It's not the snake
+It's not the Snake
 xkcd import antigravity
 PyCons
 The Python Software Foundation
 EuroPython
-Web frameworks
-Data analysis modules
-Bits of Python history
-Trivia for the masses
-IDEs and productivity tools
-Natural language analysis
-A Python limerick
+Web Frameworks
+Data Analysis Modules
+Bits of Python History
+Trivia for the Masses
+IDEs and Productivity Tools
+Natural Language Analysis
+A Python Limerick
+How These Lessons Were Created
 
-OMITTED
+OMITTED AFTER DUE CONSIDERATION
 
-Archival storage
-XML
-Decorators
-Properties
-Classmethod, staticmethod
-Interpreter guts
-Extension module authorship
-Namespace packages
-Generating PDFs with ReportLab
+Using a source code control system (off-topic, complex)
+Archival storage (zip, tar files: mostly of interest to ops types))
+XML (a little too intimidating, perhaps)
+Properties (too deep, definitely an advanced topic)
+Classmethod, Staticmethod (too esoteric)
+Interpreter guts (too complex)
+Extension module authorship (too involved, platform-specific)
+Namespace packages (too esoteric)
+Generating PDFs with ReportLab (too involved)
