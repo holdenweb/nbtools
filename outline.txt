@@ -1,57 +1,57 @@
-The IPython Notebook: Introduction and demonstration.
-Using a source code control system with the IPython Notebook.
-How classes work: Instance creation.
-How classes work: Writing objects that respond to Python operators.
-Generality of function return values.
-Functions as function arguments.
-Introducing decorators.
-Accessing IPython Notebook on the cloud.
-Tuples.
-The Python iteration protocol.
-Iteration in Python.
-Writing iterable objects.
-Advanced slicing.
-List comprehensions.
-Set comprehensions.
-Dict comprehensions.
-Generators.
-Generator expressions.
-The difference between iterables and iterators.
-Importing modules.
-The function API - signatures and specifications.
-Python namespaces.
-Callable instances.
-A look at internal CPython interpreter code.
-PEP 8 Python style.
-Reloading modules.
-Structuring packages.
-What is Unicode.
-Decoding to Unicode.
-Encoding from Unicode.
-Regular expressions.
-How these lessons were created.
-Using JSON for persistent storage.
-The Python DBAPI.
-Elementary SQL [plug OST SQL classes].
-Brief description of ORM principles (code on slides only).
-Visual Python.
-Numpy.
-SciPy.
-Pandas.
-matplotlib.
-Distributing your code.
-Config files.
-Struct module.
-Consuming JSON data from a web service.
-Bytearrays and bytestrings.
-Unit testing.
-Mock objects.
-Python Anywhere.
-Decimal.
-Names to avoid, and why.
-Reading and writing files.
-import as ...
-from ... import ...
+The IPython Notebook: Introduction and demonstration
+Using a source code control system with the IPython Notebook
+How classes work: Instance creation
+How classes work: Writing objects that respond to Python operators
+Generality of function return values
+Functions as function arguments
+Introducing decorators
+Accessing IPython Notebook on the cloud
+Tuples
+The Python iteration protocol
+Iteration in Python
+Writing iterable objects
+Advanced slicing
+List comprehensions
+Set comprehensions
+Dict comprehensions
+Generators
+Generator expressions
+The difference between iterables and iterators
+Importing modules
+The function API - signatures and specifications
+Python namespaces
+Callable instances
+A look at internal CPython interpreter code
+PEP 8 Python style
+Reloading modules
+Structuring packages
+What is Unicode
+Decoding to Unicode
+Encoding from Unicode
+Regular expressions
+How these lessons were created
+Using JSON for persistent storage
+The Python DBAPI
+Elementary SQL [plug OST SQL classes]
+Brief description of ORM principles (code on slides only)
+Visual Python
+Numpy
+SciPy
+Pandas
+matplotlib
+Distributing your code
+Config files
+Struct module
+Consuming JSON data from a web service
+Bytearrays and bytestrings
+Unit testing
+Mock objects
+Python Anywhere
+Decimal
+Names to avoid, and why
+Reading and writing files
+import as 
+from ... import 
 Handling filenames
 The Requests library
 
@@ -66,20 +66,20 @@ The Python Software Foundation
 EuroPython
 Web frameworks
 Data analysis modules
-Bits of Python history.
-Trivia for the masses.
-IDEs and productivity tools.
-Natural language analysis.
-A Python limerick.
+Bits of Python history
+Trivia for the masses
+IDEs and productivity tools
+Natural language analysis
+A Python limerick
 
 OMITTED
 
-Archival storage.
+Archival storage
 XML
 Decorators
 Properties
 Classmethod, staticmethod
 Interpreter guts
 Extension module authorship
-Namespace packages.
+Namespace packages
 Generating PDFs with ReportLab

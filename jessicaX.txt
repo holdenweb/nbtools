@@ -1,0 +1,176 @@
+Python 1 (PDF) (Current Version)
+Lesson 1: Getting Started
+A Bit of Python History
+Unix and CodeRunner
+X Programming in Python
+X A First Program
+X The Interactive Interpreter
+X Data in Python
+X String Representations
+X Numbers in Python
+Program 2: Printing Simple Python Expressions
+A Few Sample Expressions
+X First Hurdle Cleared
+X Lesson 2: Entering and Storing Data
+X Binding Values to Names
+X Names in Python
+X Namespaces and Object Space
+X More Python Syntax Basics
+X Line Continuations
+X Multiple Statements on One Line
+X Indentation
+X Comments
+X Docstrings
+X Using String Methods: Case Conversion
+X Reading and Converting User Input
+X The input() Function
+X Type Conversions
+X Calculating with Stored Values
+X Getting It Done
+Lesson 3: Making Decisions: The if Statement
+X Conditions in Python
+X Making Decisions: if Statements
+X Choosing Between Alternatives: the else Clause
+X Multiple Choice Decisions
+X Combining Conditions: 'and' and 'or'
+X Testing for a Range of Values: Chaining Comparisons
+X Wrapping It Up
+Lesson 4: Iteration: For and While Loops
+X A Basic For Loop
+X Breaking Out of a Loop
+X While Loops
+X Terminating the Current Iteration
+X Feel the Power
+Lesson 5: Sequence Containers: Lists and Tuples
+
+### I'll cover most of this lesson, but only for lists; I won't cover tuples.
+
+X Lists and Tuples
+X Writing Lists and Tuples
+X Accessing Sequence Values
+X Modifying Lists
+Slices with a Stride: Skipping Sequences
+X Other Functions and Methods to Use with Sequences
+X Testing for Presence in a Sequence
+X Manipulating Lists and Tuples
+X It Slices, It Dices...
+Lesson 6: Sets and Dicts
+Creating Sets
+Working with Sets
+X Working with Dicts
+Applying Dicts: Counting Words
+A More Complex Application: Word Pair Frequencies
+Nice Work!
+Lesson 7: String Formatting
+The format() Method
+Function Arguments
+Format Field Names
+Format Specifications
+Padding and Alignment
+Sign
+Base Indicator
+Digit Separator
+Field Width
+Precision
+Field Type
+Variable-Width Fields
+A Simple Listing Program
+Check You Out!
+Lesson 8: More About Looping
+X Fun with the range() function.
+Using the enumerate() function
+A More Complex While Loop Example
+X While Loops and User Input Validation
+Dicts and Loops
+A More Complex Example
+Loop This
+Lesson 9: Reading and Writing Files
+X Creating a New File
+X Writing to a File
+X Reading Files as Text
+X Appending to a File
+X Seeking to Arbitrary Positions
+X More File Details
+Creating a File-Based To-Do List
+Reading Binary Data
+Files for Miles
+Lesson 10: Python's Built-In Functions
+Party Fun with Built-In Functions
+abs(x)
+all(iterable)
+any(iterable)
+bool(x)
+chr(i)
+dict(arguments)
+dir(arguments)
+globals()
+help(object)
+X len(s)
+locals()
+X max(iterable)
+X min(iterable)
+ord(c)
+pow(x, y[, z])
+sorted(iterable)
+reversed(seq)
+round(x[, n])
+X sum(iterable)
+zip(*iterables)
+Fun with Built-In Functions
+Lesson 11: Defining and Calling Your Own Functions
+Exploring Functions
+X Write Your First Function
+X Parameters and Arguments
+X Returning Values
+Multiple Return Values
+Functions and Namespaces
+Parameters That Receive Multiple Arguments
+Putting It All Together
+A Solid Foundation
+Lesson 12: The Python Standard Library
+Increased Versatility
+Namespaces
+X Python Modules
+Writing Modules to be Testable
+Splitting Up Your Programs
+Other Ways to Import a Module
+import ... as
+from ... import ...
+The System Path
+Reduce, Reuse, Recycle!
+Lesson 13: More About Functions
+X Arbitrary Keyword Parameters
+X Parameters, Sequence-Parameters, and Dict-Parameters
+X Importing Functions and help()
+Function Execution by Dispatch
+What's Your Function?
+Lesson 14: Classes and Object-Oriented Programming
+X The Nature of Objects
+X Defining Your Own Object Classes
+X Class and Instance Namespaces
+X Defining Object Behavior
+X Defining Behavior as Methods
+Python Deep Magic: Hooking into Python's Class Mechanism
+X Using __init__()
+More on Python's Dunder Methods
+X Being Selfish
+A Solid Foundation
+Lesson 15: Exception Handling
+X Working through Exceptions
+X How to Catch an Exception
+X Verifying Numeric Input
+X Handling Multiple Exception Types
+X Handling Multiple Exceptions with One Handler
+X Raising Exceptions
+X Specific and Generic Exceptions
+X When to Use Exceptions
+X Exceptional Work So Far!
+Lesson 16: Building and Debugging Whole Programs
+Putting it All Together
+The Art of Computer Programming
+Design Techniques
+Agile Programming
+Documenting and Testing Python Code
+'Keep It Simple, Stupid' (KISS)
+Refactoring
+Go Forth and Code in Python!

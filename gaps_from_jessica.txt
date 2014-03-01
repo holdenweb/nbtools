@@ -1,0 +1,97 @@
+Python 1 (PDF) (Current Version)
+Lesson 1: Getting Started
+A Bit of Python History
+Unix and CodeRunner
+Program 2: Printing Simple Python Expressions
+A Few Sample Expressions
+Lesson 3: Making Decisions: The if Statement
+Lesson 4: Iteration: For and While Loops
+Lesson 5: Sequence Containers: Lists and Tuples
+
+### I'll cover most of this lesson, but only for lists; I won't cover tuples.
+
+Slices with a Stride: Skipping Sequences
+Lesson 6: Sets and Dicts
+Creating Sets
+Working with Sets
+Applying Dicts: Counting Words
+A More Complex Application: Word Pair Frequencies
+Nice Work!
+Lesson 7: String Formatting
+The format() Method
+Function Arguments
+Format Field Names
+Format Specifications
+Padding and Alignment
+Sign
+Base Indicator
+Digit Separator
+Field Width
+Precision
+Field Type
+Variable-Width Fields
+A Simple Listing Program
+Check You Out!
+Lesson 8: More About Looping
+Using the enumerate() function
+A More Complex While Loop Example
+Dicts and Loops
+A More Complex Example
+Loop This
+Lesson 9: Reading and Writing Files
+Creating a File-Based To-Do List
+Reading Binary Data
+Files for Miles
+Lesson 10: Python's Built-In Functions
+Party Fun with Built-In Functions
+abs(x)
+all(iterable)
+any(iterable)
+bool(x)
+chr(i)
+dict(arguments)
+dir(arguments)
+globals()
+help(object)
+locals()
+ord(c)
+pow(x, y[, z])
+sorted(iterable)
+reversed(seq)
+round(x[, n])
+zip(*iterables)
+Fun with Built-In Functions
+Lesson 11: Defining and Calling Your Own Functions
+Exploring Functions
+Multiple Return Values
+Functions and Namespaces
+Parameters That Receive Multiple Arguments
+Putting It All Together
+A Solid Foundation
+Lesson 12: The Python Standard Library
+Increased Versatility
+Namespaces
+Writing Modules to be Testable
+Splitting Up Your Programs
+Other Ways to Import a Module
+import ... as
+from ... import ...
+The System Path
+Reduce, Reuse, Recycle!
+Lesson 13: More About Functions
+Function Execution by Dispatch
+What's Your Function?
+Lesson 14: Classes and Object-Oriented Programming
+Python Deep Magic: Hooking into Python's Class Mechanism
+More on Python's Dunder Methods
+A Solid Foundation
+Lesson 15: Exception Handling
+Lesson 16: Building and Debugging Whole Programs
+Putting it All Together
+The Art of Computer Programming
+Design Techniques
+Agile Programming
+Documenting and Testing Python Code
+'Keep It Simple, Stupid' (KISS)
+Refactoring
+Go Forth and Code in Python!
