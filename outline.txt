@@ -52,33 +52,18 @@ import ... as ...
 from ... import 
 Handling Filenames
 The Requests Library
+import this *
+It's not the Snake *
+xkcd import antigravity *
+PyCons *
+The Python Software Foundation *
+EuroPython *
+Web Frameworks *
+Data Analysis Modules *
+Bits of Python History *
+Trivia for the Masses *
+IDEs and Productivity Tools *
+Natural Language Analysis *
+A Python Limerick *
+How These Lessons Were Created *
 
-
-HISTORICAL, HUMOROUS AND WHIMSICAL SNIPPETS
-
-import this
-It's not the Snake
-xkcd import antigravity
-PyCons
-The Python Software Foundation
-EuroPython
-Web Frameworks
-Data Analysis Modules
-Bits of Python History
-Trivia for the Masses
-IDEs and Productivity Tools
-Natural Language Analysis
-A Python Limerick
-How These Lessons Were Created
-
-OMITTED AFTER DUE CONSIDERATION
-
-Using a source code control system (off-topic, complex)
-Archival storage (zip, tar files: mostly of interest to ops types))
-XML (a little too intimidating, perhaps)
-Properties (too deep, definitely an advanced topic)
-Classmethod, Staticmethod (too esoteric)
-Interpreter guts (too complex)
-Extension module authorship (too involved, platform-specific)
-Namespace packages (too esoteric)
-Generating PDFs with ReportLab (too involved)

@@ -1,0 +1,11 @@
+OMITTED AFTER DUE CONSIDERATION
+
+Using a source code control system (off-topic, complex)
+Archival storage (zip, tar files: mostly of interest to ops types))
+XML (a little too intimidating, perhaps)
+Properties (too deep, definitely an advanced topic)
+Classmethod, Staticmethod (too esoteric)
+Interpreter guts (too complex)
+Extension module authorship (too involved, platform-specific)
+Namespace packages (too esoteric)
+Generating PDFs with ReportLab (too involved)
