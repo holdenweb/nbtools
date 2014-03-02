@@ -1,3 +1,9 @@
+#
+# This is the configuration file for automation of the production of
+# an Intermediate Python video series of approximately 6 hours duration
+#
+# Note that starred items are intended to be of shorter duration
+#
 Welcome to Class
 Introducing the IPython Notebook
 Accessing IPython Notebook on the Cloud
@@ -52,6 +58,7 @@ import ... as ...
 from ... import 
 Handling Filenames
 The Requests Library
+
 import this *
 It's not the Snake *
 xkcd import antigravity *
