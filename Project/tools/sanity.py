@@ -36,9 +36,14 @@ nb_template = jenv.get_template("base.ipynb")
 for tag in tags:
     filename = os.path.join("notebooks", tag+".ipynb")
     if not os.access(filename, os.R_OK):
+        # Publication notebooks (which is what I had
+        # in mind) will soon be automated by make,
+        # as will other notebook types. All driven
+        # by a scrupulously combed source. I hope.
         new_nb = open(filename, "w")
-        nb_content = nb_template.render({"name": tag_names[tag]}) 
+        nb_content = nb_template.render({"title": tag_names[tag],
+                                         "date": "today",
+                                         "time": "now"}) 
         new_nb.write(nb_content)
         new_nb.close()
-        # Should really copy the template IPyNB in there
         print("Created missing notebook", tag)
