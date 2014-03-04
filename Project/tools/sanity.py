@@ -9,19 +9,7 @@ import shutil
 import IPython.nbformat.current as nbf
 
 from jinja2 import Environment, FileSystemLoader
-
-def newer(file1, file2):
-    file1_creation = os.stat(file1).st_ctime
-    file2_creation = os.stat(file2).st_ctime
-    return file1_creation > file2_creation
-
-def nullstrip(file):
-    for line in file:
-        if line.strip() and line[0] != "#":
-            yield line
-
-def parse_cell(c):
-    print(json.dumps(c))
+from lib import newer, nullstrip
 
 # Filestore tree representation (for faster inferencing)
 class Directory:
@@ -58,7 +46,7 @@ for tag in tags:
         # at this point the program should create a new stub source
         # notebook, but at present there is no recipe for doing so.
         print("Missing source for", tag_names[tag])
-        continue
+        continue # Should create stub source book
     # The cells in the template are copied across
     # unless they contain processing instructions.
     # Ultimately this will be handled by pragmas.
