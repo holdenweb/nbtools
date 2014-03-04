@@ -4,6 +4,7 @@ sanity.py: Ensure the project structure's integrity is uncompromised.
 import json
 import datetime
 import os
+import shutil
 
 import IPython.nbformat.current as nbf
 
@@ -22,12 +23,6 @@ def nullstrip(file):
 def parse_cell(c):
     print(json.dumps(c))
 
-# Load configuration data from outline (currently just a list of topics)
-names = [line.strip().rstrip(" *")
-         for line in nullstrip(open("outline.txt", "r"))]
-tags = [name.replace(".", "").replace(" ", "-").lower() for name in names]
-tag_names = dict(zip(tags, names))
-
 # Filestore tree representation (for faster inferencing)
 class Directory:
     """Represent a directory with a list of files and subdirectories."""
@@ -39,27 +34,33 @@ class Directory:
             for file in files:  
                 print(file)
 
-root = Directory(".")
+root = Directory(".") # may be redundant for now.
+# Load configuration data from outline (currently just a list of topics)
+names = [line.strip().rstrip(" *")
+         for line in nullstrip(open("outline.txt", "r"))]
+tags = [name.replace(".", "").replace(" ", "-").lower() for name in names]
+tag_names = dict(zip(tags, names))
+
 # Establish jinja templating environment
 jenv = Environment(loader=FileSystemLoader("data/templates"))
 nb_template = jenv.get_template("base.ipynb")
 
 # Check all required notebook sources exist
 # (and regenerate them if their source notebook
-# is newer than the target - make is on the horizon
+# is newer than the target - make is on the horizon).
+# This code should be migrated away from sanity.py.
 for tag in tags:
     now = datetime.datetime.today()
     nb_name = tag+".ipynb"
     src_file = os.path.join("nbsource", nb_name)
     dst_file = os.path.join("notebooks", nb_name)
     if not os.path.isfile(src_file):
-        #print ("++ Missing source:", src_file)
+        # at this point the program should create a new stub source
+        # notebook, but at present there is no recipe for doing so.
+        print("Missing source for", tag_names[tag])
         continue
     # The cells in the template are copied across
     # unless they contain processing instructions.
-    # We currently assume that none do, and treat
-    # and empty cell as needing to be replaced with
-    # the cells from the source notebook.
     # Ultimately this will be handled by pragmas.
     if (not os.path.isfile(dst_file) or
             newer(src_file, dst_file)):
@@ -89,7 +90,9 @@ for tag in tags:
                 print(cell.source)
                 if (cell.cell_type == "raw" 
                     and cell.source.startswith("#!cells")):
-                    args = cell.source.split()[1:] # brittle
+                    args = cell.source.split()[1:] # brittle#
+                    # Nasty exception to this one (IPython.nbformat.current.NotJSONError)
+                    # if the notebook is not conformant.
                     param_nb = nbf.read(open(args[0], "r"), "ipynb")
                     for pcell in param_nb.worksheets[wsno].cells:
                         cells_out.append(pcell)

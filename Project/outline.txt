@@ -4,60 +4,71 @@
 #
 # Note that starred items are intended to be of shorter duration
 #
+# The first section introduces the learningenvironment and whets
+# the student's appetite for what is to come.
+#
 Welcome to Class
 Introducing the IPython Notebook
 Accessing IPython Notebook on the Cloud
-Writing Objects That Respond to Python Operators
+Downloading your IPython notebooks
+#
+# This is followed by a discussion of how Python creates and
+# uses namespaces, and the relationships between namespaces.
+#
+Python Namespaces
 Generality of Function Return Values
 Functions as Function Arguments
 Introducing Decorators
 Tuples
 The Python Iteration Protocol
-Iteration in Python
-Writing Iterable Objects
 Advanced Slicing
-List Comprehensions
-Set Comprehensions
-Dict Comprehensions
-Generators
-Generator Expressions
-The Difference Between Iterables and Iterators
+Interacting with the Interpreter 
+    Responding to Python Operators
+    Callable Instances
+Iteration in Python
+    Iterables vs. Iterators
+    Generators
+    Writing Iterable Objects
+Comprehensions and Generator Expressions
+    Set Comprehensions
+    Dict Comprehensions
+    Generator Expressions
 Importing Modules
+    import ... as ...
+    from ... import 
+    Structuring Packages
+    Relative Imports
+    Reloading Modules
 The Function API - Signatures and Specifications
-Python Namespaces
-Callable Instances
 A Look at Internal CPython Interpreter Code
 PEP 8 Python Style
-Reloading Modules
-Structuring Packages
-What is Unicode
-Decoding to Unicode
-Encoding from Unicode
+Storing and Retrieving Data
+    Reading and Writing Files
+    Handling Filenames
+    The Python DBAPI
+    ORM Principles and Sample Code
+    Elementary SQL
+What is Unicode?
+    Bytearrays and Bytestrings
+    Decoding to Unicode
+    Encoding from Unicode
 Regular Expressions
-Using JSON for Persistent Storage
-The Python DBAPI
-Elementary SQL [plug OST SQL classes]
-Brief Description of ORM Principles (code on slides only)
-Visual Python
-Numpy
-SciPy
-Pandas
-matplotlib
-Distributing Your Code
-Config Files
+Numerical and Financial Calculations
+    Decimal
+    Numpy
+    SciPy
+    Pandas
+    matplotlib
 Struct Module
 Consuming JSON Data from a Web Service
-Bytearrays and Bytestrings
-Unit Testing
-Mock Objects
+Testing Your Code
+    Unit Testing
+    Mock Objects
 Python Anywhere
-Decimal
 Names to Avoid, and Why
-Reading and Writing Files
-import ... as ...
-from ... import 
-Handling Filenames
 The Requests Library
+Distributing Your Code
+Config Files
 
 import this *
 It's not the Snake *
@@ -74,3 +85,4 @@ Natural Language Analysis *
 A Python Limerick *
 How These Lessons Were Created *
 
+Visual Python
