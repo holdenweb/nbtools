@@ -5,11 +5,14 @@ import json
 import datetime
 import os
 import shutil
+from collections import namedtuple
 
 import IPython.nbformat.current as nbf
 
 from jinja2 import Environment, FileSystemLoader
 from lib import newer, nullstrip
+
+l_node = namedtuple("l_node", "name, toplevel")
 
 # Filestore tree representation (for faster inferencing)
 class Directory:
@@ -24,29 +27,37 @@ class Directory:
 
 root = Directory(".") # may be redundant for now.
 # Load configuration data from outline (currently just a list of topics)
-names = [line.strip().rstrip(" *")
+names = [l_node(line.strip().rstrip(" *"), line[0] != " ")
          for line in nullstrip(open("outline.txt", "r"))]
-tags = [name.replace(".", "").replace(" ", "-").lower() for name in names]
-tag_names = dict(zip(tags, names))
+tags = [name[0].replace(".", "").replace(" ", "-").lower() for name in names]
+tag_names = dict(zip(tags, (name for name in names)))
 
 # Establish jinja templating environment
 jenv = Environment(loader=FileSystemLoader("data/templates"))
 nb_template = jenv.get_template("base.ipynb")
+src_template = jenv.get_template("source_base.ipynb")
 
-# Check all required notebook sources exist
-# (and regenerate them if their source notebook
-# is newer than the target - make is on the horizon).
+# Check all required notebook sources exist.
+# XXX Check no spurious source files exist
+# Regenerate them if their source notebook
+# is newer than the target - make is on the horizon.
 # This code should be migrated away from sanity.py.
 for tag in tags:
     now = datetime.datetime.today()
     nb_name = tag+".ipynb"
     src_file = os.path.join("nbsource", nb_name)
     dst_file = os.path.join("notebooks", nb_name)
+    render_context = {"slug": tag,
+                      "title": tag_names[tag].name,
+                      "date": now.date(),
+                      "time": now.time(),
+                      "src_file": src_file}
     if not os.path.isfile(src_file):
         # at this point the program should create a new stub source
         # notebook, but at present there is no recipe for doing so.
-        print("Missing source for", tag_names[tag])
-        continue # Should create stub source book
+        src_content = src_template.render(render_context)
+        open(src_file, "w").write(src_content)
+
     # The cells in the template are copied across
     # unless they contain processing instructions.
     # Ultimately this will be handled by pragmas.
@@ -58,11 +69,7 @@ for tag in tags:
         # by a scrupulously combed source. I hope.
         # For now, let's just be happy with what we have.
         dst_nb_file = open(dst_file, "w")
-        nb_content = nb_template.render({"slug": tag,
-                                         "title": tag_names[tag],
-                                         "date": now.date(),
-                                         "time": now.time(),
-                                         "src_file": src_file}) 
+        nb_content = nb_template.render(render_context) 
         dst_nb_file.write(nb_content)
         dst_nb_file.close()
         # Now we've done the easy stuff (templating)
@@ -75,7 +82,6 @@ for tag in tags:
             cells_in = worksheet.cells
             cells_out = []
             for cell in cells_in:
-                print(cell.source)
                 if (cell.cell_type == "raw" 
                     and cell.source.startswith("#!cells")):
                     args = cell.source.split()[1:] # brittle#
