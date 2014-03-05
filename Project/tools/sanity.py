@@ -1,18 +1,19 @@
 """
 sanity.py: Ensure the project structure's integrity is uncompromised.
 """
+from collections import namedtuple
 import json
 import datetime
 import os
 import shutil
-from collections import namedtuple
+import sys
 
 import IPython.nbformat.current as nbf
 
 from jinja2 import Environment, FileSystemLoader
 from lib import newer, nullstrip
 
-l_node = namedtuple("l_node", "name, toplevel")
+Snippet = namedtuple("Snippet", "title slug indent_level section snippets")
 
 # Filestore tree representation (for faster inferencing)
 class Directory:
@@ -27,28 +28,55 @@ class Directory:
 
 root = Directory(".") # may be redundant for now.
 # Load configuration data from outline (currently just a list of topics)
-names = [l_node(line.strip().rstrip(" *"), line[0] != " ")
-         for line in nullstrip(open("outline.txt", "r"))]
-tags = [name[0].replace(".", "").replace(" ", "-").lower() for name in names]
-tag_names = dict(zip(tags, (name for name in names)))
+root_snippet = Snippet(title="O'Reilly Media: Intermediate Python",
+                       slug="oreilly-media-intermdiate-python",
+                       indent_level=0, section=None, snippets=[])
+slug_snippets = {}
+indent_stack = [0]
+snippet_stack = [root_snippet]
+last_snippet  = root_snippet
+slug_list = []
+top_level_snippets = []
+for line in nullstrip(open("outline.txt", "r")):
+    title = line.strip().rstrip(" *")
+    indent = (len(line)-len(line.lstrip()))
+    if indent > indent_stack[-1]: # Lower level than previous
+        if not snippet_stack:
+            sys.exit("First snippet has no containing section")
+        indent_stack.append(indent)
+        snippet_stack.append(last_snippet)
+    while indent < indent_stack[-1]:
+        indent_stack.pop()
+        snippet_stack.pop()
+        if indent > indent_stack[-1]:
+            sys.exit("Mismatched indentation on", title)
+    slug = title.replace(".", "").replace(" ", "-").lower()
+    snippet = Snippet(title=title, slug=slug, indent_level=len(indent_stack),
+                      section=False, snippets=[])
+    slug_snippets[slug] = snippet
+    if not indent:
+        top_level_snippets.append(snippet)
+    if snippet_stack:
+        snippet_stack[-1].snippets.append(snippet)
+    slug_list.append(slug)
 
 # Establish jinja templating environment
-jenv = Environment(loader=FileSystemLoader("data/templates"))
-nb_template = jenv.get_template("base.ipynb")
-src_template = jenv.get_template("source_base.ipynb")
+template_env = Environment(loader=FileSystemLoader("data/templates"))
+nb_template = template_env.get_template("base.ipynb")
+src_template = template_env.get_template("source_base.ipynb")
 
 # Check all required notebook sources exist.
 # XXX Check no spurious source files exist
 # Regenerate them if their source notebook
 # is newer than the target - make is on the horizon.
 # This code should be migrated away from sanity.py.
-for tag in tags:
+for slug in slug_list:
     now = datetime.datetime.today()
-    nb_name = tag+".ipynb"
+    nb_name = slug+".ipynb"
     src_file = os.path.join("nbsource", nb_name)
     dst_file = os.path.join("notebooks", nb_name)
-    render_context = {"slug": tag,
-                      "title": tag_names[tag].name,
+    render_context = {"slug": slug,
+                      "title": slug_snippets[slug].title,
                       "date": now.date(),
                       "time": now.time(),
                       "src_file": src_file}
@@ -72,10 +100,12 @@ for tag in tags:
         nb_content = nb_template.render(render_context) 
         dst_nb_file.write(nb_content)
         dst_nb_file.close()
-        # Now we've done the easy stuff (templating)
+        # Now we've done the easy stuff (rendering the template)
         # we read in the newly-created notebook and
         # manipulate its structure according to the
         # pragmas found in the various cells.
+        # Right now there's just one pragma (#!cells)
+        # that says "put all that shit in here".
         dst_nb = nbf.read(open(dst_file, 'r'), "ipynb")
         dst_worksheets = dst_nb.worksheets
         for wsno, worksheet in enumerate(dst_worksheets):
@@ -85,15 +115,18 @@ for tag in tags:
                 if (cell.cell_type == "raw" 
                     and cell.source.startswith("#!cells")):
                     args = cell.source.split()[1:] # brittle#
-                    # Nasty exception to this one (IPython.nbformat.current.NotJSONError)
+                    # Nasty exception to this one
+                    # (IPython.nbformat.current.NotJSONError)
                     # if the notebook is not conformant.
                     param_nb = nbf.read(open(args[0], "r"), "ipynb")
                     for pcell in param_nb.worksheets[wsno].cells:
-                        cells_out.append(pcell)
-                else:
+                        if pcell.cell_type == "code":
+                            cells_out.append(pcell)
+                else: # copy other template cells to output
                     cells_out.append(cell)
             worksheet.cells = cells_out
         outf = open(dst_file, 'w')
         nbf.write(dst_nb, outf, "ipynb")
         outf.close()
-        print("Created notebook", tag)
+        print("Created notebook", slug)
+print("Done")
