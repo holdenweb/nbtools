@@ -20,12 +20,14 @@ if len(sys.argv) > 1:
 else:
     paths = glob("*.ipynb")
 
+results = []
 for path in paths:
     notebook = nbf.read(open(path), "ipynb")
     filename = os.path.basename(path)
     code_lines = code_bytes = doc_lines = doc_bytes = 0
     worksheet = notebook.worksheets[0]
     cell_count = len(worksheet.cells)
+    #print(path, cell_count)
     cell_type_count = defaultdict(int)
     if cell_count > 1:
         for cell in worksheet.cells:
@@ -45,9 +47,12 @@ for path in paths:
                 bytes = sum(len(l) for l in source)
                 code_lines += lines
                 code_bytes += bytes
-        results.append((filename, cell_type_count["code"], code_lines, code_bytes,,
-                        cell_type_count["markdown"], doc_lines, doc_bytes)
-longest = max(len(r[0]) for r in results)
+        results.append((path, cell_type_count["code"], code_lines, code_bytes,
+                        cell_type_count["markdown"], doc_lines, doc_bytes))
+if results:
+    longest = max(len(r[0]) for r in results)
+else:
+    sys.exit("No files with more than one cell")
 
-for filename, code_cells, code_lines, code_bytes, doc_count, doc_lines, doc_bytes) in results:
-            "{}"
+for (path, code_cells, code_lines, code_bytes, doc_count, doc_lines, doc_bytes) in results:
+            print(path)
