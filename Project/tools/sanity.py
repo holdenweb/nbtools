@@ -132,5 +132,5 @@ for slug in slug_list:
         outf = open(dst_file, 'w')
         nbf.write(dst_nb, outf, "ipynb")
         outf.close()
-        print("Created notebook", slug)
+        print("Built output notebook", slug)
 print("Done")

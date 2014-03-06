@@ -28,6 +28,7 @@ The Python Environment
 More Python Data Types
     Tuples
     Dicts and Sets
+    Slicing
     Advanced Slicing
     Regular Expressions
 #
