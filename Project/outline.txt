@@ -25,7 +25,7 @@ The Python Environment
 # We now cover some important data types that couldn't be
 # covered in the introductory class.
 #
-More About Python Data Types
+More Python Data Types
     Tuples
     Dicts and Sets
     Advanced Slicing
@@ -55,6 +55,7 @@ Comprehensions and Generator Expressions
 # know  how to split them up into pieces.
 #
 Importing Modules
+    How import Works
     import ... as ...
     from ... import 
     Structuring Packages
