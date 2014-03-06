@@ -15,6 +15,7 @@ from lib import newer, nullstrip
 
 Snippet = namedtuple("Snippet", "title slug indent_level section snippets")
 
+wanted_cell_types = {"code", "markdown", "heading"}
 # Filestore tree representation (for faster inferencing)
 class Directory:
     """Represent a directory with a list of files and subdirectories."""
@@ -29,20 +30,20 @@ class Directory:
 root = Directory(".") # may be redundant for now.
 # Load configuration data from outline (currently just a list of topics)
 root_snippet = Snippet(title="O'Reilly Media: Intermediate Python",
-                       slug="oreilly-media-intermdiate-python",
+                       slug="SOMETHING MEANINGFUL AT A SYSTEM LEVEL",
                        indent_level=0, section=None, snippets=[])
 slug_snippets = {}
 indent_stack = [0]
 snippet_stack = [root_snippet]
 last_snippet  = root_snippet
 slug_list = []
+snippet_list = []
 top_level_snippets = []
 for line in nullstrip(open("outline.txt", "r")):
+    assert len(snippet_stack), "Nothing on the stack!"
     title = line.strip().rstrip(" *")
     indent = (len(line)-len(line.lstrip()))
     if indent > indent_stack[-1]: # Lower level than previous
-        if not snippet_stack:
-            sys.exit("First snippet has no containing section")
         indent_stack.append(indent)
         snippet_stack.append(last_snippet)
     while indent < indent_stack[-1]:
@@ -54,11 +55,12 @@ for line in nullstrip(open("outline.txt", "r")):
     snippet = Snippet(title=title, slug=slug, indent_level=len(indent_stack),
                       section=False, snippets=[])
     slug_snippets[slug] = snippet
-    if not indent:
-        top_level_snippets.append(snippet)
-    if snippet_stack:
-        snippet_stack[-1].snippets.append(snippet)
+    snippet_stack[-1].snippets.append(snippet)
     slug_list.append(slug)
+    snippet_list.append(snippet)
+    if snippet.indent_level == 1:
+        top_level_snippets.append(snippet)
+    last_snippet = snippet
 
 # Establish jinja templating environment
 template_env = Environment(loader=FileSystemLoader("data/templates"))
@@ -120,8 +122,10 @@ for slug in slug_list:
                     # if the notebook is not conformant.
                     param_nb = nbf.read(open(args[0], "r"), "ipynb")
                     for pcell in param_nb.worksheets[wsno].cells:
-                        if pcell.cell_type in {"code", "markdown"}:
+                        if pcell.cell_type in wanted_cell_types:
                                 cells_out.append(pcell)
+                        else:
+                            print("%%% ignored cell type", pcell.cell_type)
                 else: # copy other template cells to output
                     cells_out.append(cell)
             worksheet.cells = cells_out
