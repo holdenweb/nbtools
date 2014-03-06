@@ -120,8 +120,8 @@ for slug in slug_list:
                     # if the notebook is not conformant.
                     param_nb = nbf.read(open(args[0], "r"), "ipynb")
                     for pcell in param_nb.worksheets[wsno].cells:
-                        if pcell.cell_type == "code":
-                            cells_out.append(pcell)
+                        if pcell.cell_type in {"code", "markdown"}:
+                                cells_out.append(pcell)
                 else: # copy other template cells to output
                     cells_out.append(cell)
             worksheet.cells = cells_out
