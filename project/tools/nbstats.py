@@ -18,11 +18,11 @@ import IPython.nbformat.current as nbf
 if len(sys.argv) > 1:
     paths = sys.argv[1:]
 else:
-    paths = glob("nbsource/*.ipynb")
+    paths = glob("*.ipynb")
 
 for path in paths:
     notebook = nbf.read(open(path), "ipynb")
-    filename = os.path.split(path)[1]
+    filename = os.path.basename(path)
     code_lines = code_bytes = doc_lines = doc_bytes = 0
     worksheet = notebook.worksheets[0]
     cell_count = len(worksheet.cells)
@@ -45,6 +45,9 @@ for path in paths:
                 bytes = sum(len(l) for l in source)
                 code_lines += lines
                 code_bytes += bytes
-        print(filename, "code",
-              cell_type_count["code"], "cells", code_lines, "lines", code_bytes, "bytes",
-              "markdown", cell_type_count["markdown"], "cells", doc_lines, "lines", doc_bytes, "bytes")
+        results.append((filename, cell_type_count["code"], code_lines, code_bytes,,
+                        cell_type_count["markdown"], doc_lines, doc_bytes)
+longest = max(len(r[0]) for r in results)
+
+for filename, code_cells, code_lines, code_bytes, doc_count, doc_lines, doc_bytes) in results:
+            "{}"
