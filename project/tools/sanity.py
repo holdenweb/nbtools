@@ -1,7 +1,6 @@
 """
 sanity.py: Ensure the project structure's integrity is uncompromised.
 """
-from collections import namedtuple
 import datetime
 import os
 import shutil
@@ -11,8 +10,7 @@ import IPython.nbformat.current as nbf
 
 from jinja2 import Environment, FileSystemLoader
 from lib import newer, nullstrip, slugify
-
-Snippet = namedtuple("Snippet", "title slug indent_level section snippets")
+from snippet import Snippet
 
 wanted_cell_types = {"code", "markdown", "heading"}
 # Filestore tree representation (for faster inferencing)
@@ -84,6 +82,8 @@ for slug in slug_list:
     # The cells in the template are copied across
     # unless they contain processing instructions.
     # Ultimately this will be handled by pragmas.
+    if not os.path.exists(src_file):
+        continue
     if (not os.path.isfile(dst_file) or
             newer(src_file, dst_file)):
         # Publication notebooks (which is what I had

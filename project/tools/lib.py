@@ -17,4 +17,4 @@ def nullstrip(file):
             yield line
 
 def slugify(title):
-    return "xxx"+title.replace(".", "").replace(" ", "-").lower()
+    return title.replace(" - ", "-").replace(".", "").replace(" ", "-").lower()
