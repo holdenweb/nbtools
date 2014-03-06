@@ -10,7 +10,7 @@ import sys
 import IPython.nbformat.current as nbf
 
 from jinja2 import Environment, FileSystemLoader
-from lib import newer, nullstrip
+from lib import newer, nullstrip, slugify
 
 Snippet = namedtuple("Snippet", "title slug indent_level section snippets")
 
@@ -50,7 +50,7 @@ for line in nullstrip(open("outline.txt", "r")):
         snippet_stack.pop()
         if indent > indent_stack[-1]:
             sys.exit("Mismatched indentation on", title)
-    slug = title.replace(".", "").replace(" ", "-").lower()
+    slug = slugify(title)
     snippet = Snippet(title=title, slug=slug, indent_level=len(indent_stack),
                       section=False, snippets=[])
     slug_snippets[slug] = snippet
@@ -81,12 +81,6 @@ for slug in slug_list:
                       "date": now.date(),
                       "time": now.time(),
                       "src_file": src_file}
-    if not os.path.isfile(src_file):
-        # at this point the program should create a new stub source
-        # notebook, but at present there is no recipe for doing so.
-        src_content = src_template.render(render_context)
-        open(src_file, "w").write(src_content)
-
     # The cells in the template are copied across
     # unless they contain processing instructions.
     # Ultimately this will be handled by pragmas.

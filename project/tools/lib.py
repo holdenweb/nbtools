@@ -16,3 +16,5 @@ def nullstrip(file):
         if line.rstrip() and line[0] != "#":
             yield line
 
+def slugify(title):
+    return "xxx"+title.replace(".", "").replace(" ", "-").lower()
