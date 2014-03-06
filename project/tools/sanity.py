@@ -2,7 +2,6 @@
 sanity.py: Ensure the project structure's integrity is uncompromised.
 """
 from collections import namedtuple
-import json
 import datetime
 import os
 import shutil
