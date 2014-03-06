@@ -1,5 +1,5 @@
 #
-# This is the configuration file for automation of the production of
+# This is the configuration file for automating the production of
 # an Intermediate Python video series of approximately 6 hours duration
 #
 # Note that starred items are intended to be of shorter duration
@@ -8,10 +8,11 @@
 # the student's appetite for what is to come.
 #
 Welcome to Class
+    Bits of Python History *
     Introducing the IPython Notebook
     Accessing IPython Notebook on the Cloud
     Downloading your IPython notebooks
-    Bits of Python History *
+    IDEs and Productivity Tools *
 #
 # This is followed by a discussion of how Python creates and
 # uses namespaces, and the relationships between namespaces.
@@ -44,10 +45,11 @@ Interacting with the Interpreter
     Generators
     Writing Iterable Objects
 #
-# Here we introduce some more advanced concepts th will
+# Here we introduce some more advanced concepts that will
 # help students to write more conci, efficient code.
 #
 Comprehensions and Generator Expressions
+    List Comprehensions
     Set Comprehensions
     Dict Comprehensions
     Generator Expressions
@@ -116,7 +118,6 @@ Testing Your Code
     Mock Objects
     PEP 8 Python Style
     Names to Avoid, and Why
-    IDEs and Productivity Tools *
     A Look at Internal CPython Interpreter Code *
 #
 # Even the most wonderful things must end.
