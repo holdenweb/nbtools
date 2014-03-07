@@ -78,7 +78,8 @@ for slug in slug_list:
                       "title": slug_snippets[slug].title,
                       "date": now.date(),
                       "time": now.time(),
-                      "src_file": src_file}
+                      "src_file": src_file,
+                      "template": "UNKNOWN"}
     # The cells in the template are copied across
     # unless they contain processing instructions.
     # Ultimately this will be handled by pragmas.
