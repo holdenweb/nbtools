@@ -12,6 +12,8 @@ import lib
 from jinja2 import Environment, FileSystemLoader
 from lib import nullstrip, slugify
 
+# XXX Currently runs only from the project directory.
+#     I am inclined to leave it that way for now
 template_env = Environment(loader=FileSystemLoader("data/templates"))
 # -t template would be nice, but this will do for now
 src_template = template_env.get_template("source_base.ipynb")
