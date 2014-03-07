@@ -29,7 +29,8 @@ def mktopic(title):
                       "title": title,
                       "date": now.date(),
                       "time": now.time(),
-                      "src_file": dst_file} # we are writing a source ...
+                      "src_file": dst_file,
+                      "template": src_template.filename} # we are writing a source ...
     if os.path.isfile(dst_file):
         # If the topic exists do not overwrite it XXX [unless option set].
         sys.exit("file {} already exists".format(dst_file))
