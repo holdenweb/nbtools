@@ -47,12 +47,18 @@ for path in paths:
                 bytes = sum(len(l) for l in source)
                 code_lines += lines
                 code_bytes += bytes
-        results.append((path, cell_type_count["code"], code_lines, code_bytes,
-                        cell_type_count["markdown"], doc_lines, doc_bytes))
+        results.append((path, cell_type_count["code"], code_lines,
+                        code_bytes, cell_type_count["markdown"],
+                        doc_lines, doc_bytes))
 if results:
     longest = max(len(r[0]) for r in results)
 else:
     sys.exit("No files with more than one cell")
 
-for (path, code_cells, code_lines, code_bytes, doc_count, doc_lines, doc_bytes) in results:
-            print(path)
+totals = [0, 0, 0, 0, 0, 0]
+format_str = "{:>{length}} {:3d} {:5,d} {:6,d} {:3d} {:5,d} {:6,d}"
+for result in results:
+    totals = [total+count for (total, count) in zip(totals, result[1:])]
+    print(format_str.
+          format(*result, length=longest))
+print(format_str.format(*["TOTALS"]+totals, length=longest))
