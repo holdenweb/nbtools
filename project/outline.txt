@@ -44,6 +44,7 @@ Interacting with the Interpreter
     Iterables vs. Iterators
     Generators
     Writing Iterable Objects
+    Context Managers
 #
 # Here we introduce some more advanced concepts that will
 # help students to write more conci, efficient code.
