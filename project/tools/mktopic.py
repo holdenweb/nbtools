@@ -16,7 +16,7 @@ from lib import nullstrip, slugify
 #     I am inclined to leave it that way for now
 template_env = Environment(loader=FileSystemLoader("data/templates"))
 # -t template would be nice, but this will do for now
-src_template = template_env.get_template("source_base.ipynb")
+src_template = template_env.get_template("base.ipynb")
 
 def mktopic(title):
     "Takes a list of the words of a topic title and builds the appropriate notebook file."
