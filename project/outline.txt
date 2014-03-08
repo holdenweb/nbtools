@@ -47,7 +47,7 @@ Interacting with the Interpreter
     Context Managers
 #
 # Here we introduce some more advanced concepts that will
-# help students to write more conci, efficient code.
+# help students to write more concise, efficient code.
 #
 Comprehensions and Generator Expressions
     List Comprehensions
@@ -125,8 +125,8 @@ Testing Your Code
 # This last section wraps the whole course up.
 #
 Goodbye!
-    import this *
-    The Python Software Foundation *
-    PyCons *
-    EuroPython *
     How These Lessons Were Created *
+    The Python Software Foundation *
+    EuroPython *
+    PyCons *
+    import this *
