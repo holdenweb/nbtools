@@ -12,7 +12,9 @@ from jinja2 import Environment, FileSystemLoader
 from lib import newer, nullstrip, slugify
 from snippet import Snippet
 
+# XXX Wanted types may vary - options? profiles? config!!!!!
 wanted_cell_types = {"code", "markdown", "heading"}
+
 # Filestore tree representation (for faster inferencing)
 class Directory:
     """Represent a directory with a list of files and subdirectories."""
@@ -61,10 +63,8 @@ for line in nullstrip(open("outline.txt", "r")):
 
 # Establish jinja templating environment
 template_env = Environment(loader=FileSystemLoader("data/templates"))
-nb_template = template_env.get_template("base.ipynb")
 src_template = template_env.get_template("source_base.ipynb")
 
-# Check all required notebook sources exist.
 # XXX Check no spurious source files exist
 # Regenerate them if their source notebook
 # is newer than the target - make is on the horizon.
@@ -93,7 +93,7 @@ for slug in slug_list:
         # by a scrupulously combed source. I hope.
         # For now, let's just be happy with what we have.
         dst_nb_file = open(dst_file, "w")
-        nb_content = nb_template.render(render_context) 
+        nb_content = src_template.render(render_context) 
         dst_nb_file.write(nb_content)
         dst_nb_file.close()
         # Now we've done the easy stuff (rendering the template)
@@ -109,18 +109,22 @@ for slug in slug_list:
             cells_out = []
             for cell in cells_in:
                 if (cell.cell_type == "raw" 
-                    and cell.source.startswith("#!cells")):
+                    and cell.source.startswith("#!content")):
                     args = cell.source.split()[1:] # brittle#
                     # Nasty exception to this one
                     # (IPython.nbformat.current.NotJSONError)
                     # if the notebook is not conformant.
+                    # Taught me not to read them in JSON!
                     param_nb = nbf.read(open(args[0], "r"), "ipynb")
                     for pcell in param_nb.worksheets[wsno].cells:
                         if pcell.cell_type in wanted_cell_types:
-                                cells_out.append(pcell)
+                            #print("Appending source", pcell.cell_type)
+                            cells_out.append(pcell)
                         else:
-                            print("%%% ignored cell type", pcell.cell_type)
+                            pass
+                            #print("%%% ignored cell type", pcell.cell_type)
                 else: # copy other template cells to output
+                    #print("Appending template", cell.cell_type)
                     cells_out.append(cell)
             worksheet.cells = cells_out
         outf = open(dst_file, 'w')
