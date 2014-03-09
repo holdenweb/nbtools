@@ -18,7 +18,7 @@ import IPython.nbformat.current as nbf
 if len(sys.argv) > 1:
     paths = sys.argv[1:]
 else:
-    paths = glob("*.ipynb")
+    paths = glob("nbsource/*.ipynb")
 
 results = []
 for path in paths:

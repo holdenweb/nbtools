@@ -19,9 +19,13 @@ wanted_cell_types = {"code", "markdown", "heading"}
 class Directory:
     """Represent a directory with a list of files and subdirectories."""
     def __init__(self, dir):
-        self.root , self.dirs, self.files = next(os.walk(dir))
+        try:
+            self.root , dirs, self.files = next(os.walk(dir))
+            self.dirs = [Directory(d) for d in dirs]
+        except StopIteration:
+            pass
     def enumerate(self):
-        for dir, subdirs, files in walker:
+        for dir, subdirs, files in self.root:
             print("\nDirectory:", dir())
             for file in files:  
                 print(file)
@@ -31,6 +35,8 @@ root = Directory(".") # may be redundant for now.
 root_snippet = Snippet(title="O'Reilly Media: Intermediate Python",
                        slug="SOMETHING MEANINGFUL AT A SYSTEM LEVEL",
                        indent_level=0, section=None, snippets=[])
+# An exaggerated description of this approach: build every possible
+# structure and see what turns out to be useful.
 slug_snippets = {}
 indent_stack = [0]
 snippet_stack = [root_snippet]
