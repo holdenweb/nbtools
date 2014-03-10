@@ -75,6 +75,9 @@ src_template = template_env.get_template("source_base.ipynb")
 # Regenerate them if their source notebook
 # is newer than the target - make is on the horizon.
 # This code should be migrated away from sanity.py.
+file_slug_list = [os.path.split(
+                    os.path.dirname(name))[1]
+                    for name in glob(os.path.join("notebooks", "*.ipynb")))]
 for slug in slug_list:
     now = datetime.datetime.today()
     nb_name = slug+".ipynb"
