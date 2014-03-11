@@ -56,7 +56,10 @@ else:
     sys.exit("No files with more than one cell")
 
 totals = [0, 0, 0, 0, 0, 0]
-format_str = "{:>{length}} {:3d} {:5,d} {:6,d} {:3d} {:5,d} {:6,d}"
+format_str = "{:>{length}} {:4d} {:6,d} {:6,d} {:4d} {:6,d} {:6,d}"
+format_hdr = "{:>{length}} {}"
+print(format_hdr.format("", "------ code ------ ---- markdown ----", length=longest))
+print(format_hdr.format("", "cells  lines chars cells  lines chars", length=longest))
 for result in results:
     totals = [total+count for (total, count) in zip(totals, result[1:])]
     print(format_str.
