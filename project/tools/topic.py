@@ -24,17 +24,20 @@ def get_topics():
     return topics
 
 def topic(words, exists=True):
-    "Takes a list of words returning the topics that match"
-    topic_words = [word.lower() for word in words]
-    #print("Matching", topic_words)
+    """Takes a list of words returning the topics that match.
+    
+    exists: True, file must exist
+            False, must not exist
+            None: don't care."""
+    search_words = [word.lower() for word in words]
     topics = get_topics()
-    #print(len(topics))
     slugs = [slugify(topic.strip()) for topic in topics]
     for title, slug in zip(topics, slugs):
         title_words =  set([word.lower() for word in title.split()])
-        #print(title_words)
-        if all((word in title_words) for word in topic_words):        
-            if os.path.isfile(os.path.join("nbsource", slug+".ipynb")) != exists:
+        if all((word in title_words) for word in search_words): 
+            #print("Matches:", title, title_words, search_words)
+            if (exists is None) or (os.path.exists(
+                os.path.join("nbsource", slug+".ipynb")) != exists):
                 # If the topic exists do not overwrite it
                 # XXX [unless option set]. Better comment required, or lose
                 print(title)
@@ -52,6 +55,7 @@ def orphaned_topic_files():
 if __name__ == "__main__":
     # possible -d option for directory?
     exists = orphaned = False
+    # XXX one switch only ... use proper arg parsing
     if len(sys.argv) > 1 and sys.argv[1][0] == "-":
         if sys.argv[1] == "-u":
             exists = True
@@ -59,9 +63,15 @@ if __name__ == "__main__":
             orphaned = True
         elif sys.argv[1] == "-a":
             exists = None
+        else:
+            import sys
+            sys.exit("topic.py [-d | -u | -a] [List of words]")
         del sys.argv[1]
             
     if orphaned:
         orphaned_topic_files()
     else:
-        topic(sys.argv[1:], exists=exists)
+        topic_list = slugify(" ".join(sys.argv[1:])).split("-")
+        if topic_list == [""]:
+            topic_list = [] 
+        topic(topic_list, exists=exists)
