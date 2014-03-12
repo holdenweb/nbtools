@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# topic.py
+# topisc.py
 #
 # Make a notebook for a new topic
 #
