@@ -4,3 +4,4 @@ Count the number of leading spaces on a string
 
 Remove all occurrences of an arbitrary number of characters from a string
 
+What would happen if object werw a context manager?
