@@ -90,7 +90,7 @@ Storing, Retrieving and Handling Data
 #
 Simple Networking
     The Requests Library
-    Consuming JSON Data from a Web Service
+    Using JSON Data
     Web Frameworks *
 #
 # Here we explain it in detail and establish basic principle.
