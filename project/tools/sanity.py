@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 sanity.py: Ensure the project structure's integrity is uncompromised.
 """
