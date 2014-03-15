@@ -1,7 +1,7 @@
 export PROJECT_HOME=~/Projects/Python/intVideos/project
 NBSTATS=$PROJECT_HOME/tools/nbstats.py
 TOPICS=$PROJECT_HOME/tools/topics.py
-SANITY=$PROJECT_HOME/tools/sanity.py
+MERGE=$PROJECT_HOME/tools/merge.py
 export CONTENT_HOME=~/Projects/Python/intermediate-notebooks
 
 echo "Copying outline"
@@ -17,7 +17,7 @@ echo "   Orphaned notebooks"
 $TOPICS -o > $CONTENT_HOME/orphaned.txt
 echo "Generating and transferring notebooks"
 rm notebooks/*.ipynb
-$SANITY
+$MERGE
 tar cfh - ./notebooks/*.ipynb ./notebooks/nb | (cd $CONTENT_HOME; tar xf -)
 echo "---------------------------"
 (cd $CONTENT_HOME;
