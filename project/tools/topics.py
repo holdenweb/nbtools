@@ -23,7 +23,7 @@ def get_topics():
         topics.append(line.strip().rstrip(" *"))
     return topics
 
-def topic(words, exists=True):
+def topic_and_file(words, exists=True):
     """Takes a list of words returning the topics that match.
     
     exists: True, file must exist
@@ -35,11 +35,8 @@ def topic(words, exists=True):
     for title, slug in zip(topics, slugs):
         title_words =  set([word.lower() for word in title.split()])
         if all((word in title_words) for word in search_words): 
-            #print("Matches:", title, title_words, search_words)
             if (exists is None) or (os.path.exists(
                 os.path.join("nbsource", slug+".ipynb")) != exists):
-                # If the topic exists do not overwrite it
-                # XXX [unless option set]. Better comment required, or lose
                 print(title)
 
 def orphaned_topic_files():
@@ -74,4 +71,4 @@ if __name__ == "__main__":
         topic_list = slugify(" ".join(sys.argv[1:])).split("-")
         if topic_list == [""]:
             topic_list = [] 
-        topic(topic_list, exists=exists)
+        topic_and_file(topic_list, exists=exists)
