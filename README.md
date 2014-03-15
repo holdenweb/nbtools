@@ -59,7 +59,7 @@ __Note:__ there is currently no way to inject changes in the base notebook into 
 __nbstats.py__  
 Reports on the cells, lines and character count of both code and markdown cells in the `nbsource` directory, _e.g._
 
-<img src="files/images/nbstats_out.png" />
+<img src="https://dl.dropboxusercontent.com/u/6117375/intermediate-notebooks/nbstats_out.png" />
 
 You can optionally follow the command with a list of filenames to report on.
 
@@ -104,8 +104,5 @@ When you are done, you might want to shut your Notebook Server down. There's no 
 
 In the Cloud Server window click the "Stop" button next to your chosen virtual. It takes a while (maybe up to a minute: what do you care, it's free, right?) to shut down a running virtual. The next time you visit your Notebook Cloud account (or even immediately!) you can restart it by clicking on its "Start" button.
 
-The "Terminate" button removes the VM instance completely, dstroying its file store (so better make sure that before you terminate an instance you have downloaded copies of all Notebooks you may want to keep).
-
-___Reviewing the Course Content___  
-The simplest way to achieve this is to 
+The "Terminate" button removes the VM instance completely, destroying its file store (so better make sure that before you terminate an instance you have downloaded copies of all Notebooks you may want to keep).
 
