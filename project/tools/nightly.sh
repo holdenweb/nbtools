@@ -22,6 +22,5 @@ tar cfh - ./notebooks/*.ipynb ./notebooks/nb | (cd $CONTENT_HOME; tar xf -)
 echo "---------------------------"
 (cd $CONTENT_HOME;
     git add *
-    git status
-    git commit -m "Nightly dump for `date `"
+    git commit -m "Nightly dump for `date '+%Y-%m-%d %H:%M'`"
 )
