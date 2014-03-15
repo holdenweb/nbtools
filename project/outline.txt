@@ -42,7 +42,7 @@ Interacting with the Interpreter
     Callable Instances
     The Python Iteration Protocol
     Iterables vs. Iterators
-    Generators
+    Generator Functions
     Writing Iterable Objects
     Context Managers
 #
@@ -59,6 +59,7 @@ Comprehensions and Generator Expressions
 # know  how to split them up into pieces.
 #
 Importing Modules
+    What Happens When the Interpreter Starts
     How import Works
     import ... as ...
     from ... import 
