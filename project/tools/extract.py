@@ -26,7 +26,7 @@ while args and args[0].startswith("-"):
     elif arg=="-h":
         cell_types.add("heading")
     else:
-        sys.exit("Usage: extract [-c | -m] filename ...")
+        sys.exit("Usage: extract.py [-c] [-m] [-h] filename ...")
 
 for src_file in args:
     # Establish jinja templating environment (Do we even need to render?)
