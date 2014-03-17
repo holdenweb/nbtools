@@ -1,5 +1,5 @@
 #
-# lib.py: utility functions for the Motebopok handlers
+# lib.py: utility functions for the Notebook handlers
 #
 """This file takes the difficulties out of working with directories,
 and it also reduces clutter in at least one program."""
