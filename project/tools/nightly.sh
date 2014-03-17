@@ -1,15 +1,18 @@
-export PROJECT_HOME=~/Projects/Python/intVideos/project
-NBSTATS=$PROJECT_HOME/tools/nbstats.py
-TOPICS=$PROJECT_HOME/tools/topics.py
-MERGE=$PROJECT_HOME/tools/merge.py
+export SCAM_PROJECT=~/Projects/Python/intVideos/project
+#
+# XXX program positions should really be independent of $SCAM_PROJECT
+#
+NBSTATS=$SCAM_PROJECT/tools/nbstats.py
+TOPICS=$SCAM_PROJECT/tools/topics.py
+MERGE=$SCAM_PROJECT/tools/merge.py
 export CONTENT_HOME=~/Projects/Python/intermediate-notebooks
 
 echo "Copying outline"
-cd $PROJECT_HOME
+cd $SCAM_PROJECT
 cp outline.txt $CONTENT_HOME
 echo "Creating statistics"
 echo "   Content Analysis"
-(cd $PROJECT_HOME/nbsource;
+(cd $SCAM_PROJECT/nbsource;
     $NBSTATS *.ipynb > $CONTENT_HOME/nbstats.txt)
 echo "   Unstarted topics"
 $TOPICS -u > $CONTENT_HOME/unstarted.txt

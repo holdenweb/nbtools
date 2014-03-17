@@ -9,7 +9,7 @@ import os
 import sys
 
 import lib
-from lib import nullstrip, slugify
+from lib import nullstrip, slugify, get_project_dir
 
 # XXX Currently runs only from the project directory.
 #     I am inclined to leave it that way for now
@@ -64,11 +64,13 @@ if __name__ == "__main__":
             import sys
             sys.exit("topic.py [-d | -u | -a] [List of words]")
         del sys.argv[1]
-            
+
+    os.chdir(get_project_dir())
+
     if orphaned:
         orphaned_topic_files()
     else:
         topic_list = slugify(" ".join(sys.argv[1:])).split("-")
-        if topic_list == [""]:
+        if topic_list == [""]: # Annoying special case?
             topic_list = [] 
         topic_and_file(topic_list, exists=exists)

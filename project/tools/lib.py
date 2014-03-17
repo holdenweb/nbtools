@@ -6,6 +6,9 @@ and it also reduces clutter in at least one program."""
 
 import os
 
+def get_project_dir(default="."):
+    return os.environ.get("SCAM_PROJECT", default)
+
 def newer(file1, file2):
     file1_modification = os.stat(file1).st_mtime
     file2_modification = os.stat(file2).st_mtime
