@@ -82,9 +82,9 @@ More About Functions
 Storing, Retrieving and Handling Data
     Reading and Writing Files
     Handling Filenames
+    Elementary SQL
     The Python DBAPI
     ORM Principles and Sample Code
-    Elementary SQL
     Struct Module - Handling Binary Data
 #
 # This section explains how to get on the 'net with Python
