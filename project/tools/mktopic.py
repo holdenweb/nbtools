@@ -14,12 +14,13 @@ from lib import nullstrip, slugify
 
 # XXX Currently runs only from the project directory.
 #     I am inclined to leave it that way for now
-template_env = Environment(loader=FileSystemLoader("data/templates"))
-# -t template would be nice, but this will do for now
-src_template = template_env.get_template("base.ipynb")
 
 def mktopic(title):
     "Takes a list of the words of a topic title and builds the appropriate notebook file."
+    os.chdir(lib.get_project_dir())
+    template_env = Environment(loader=FileSystemLoader("data/templates"))
+    # -t template would be nice, but this will do for now
+    src_template = template_env.get_template("base.ipynb")
     now = datetime.datetime.today()
     title = " ".join(title)
     slug = lib.slugify(title)
@@ -42,5 +43,5 @@ def mktopic(title):
 if __name__ == "__main__":
     # possible -d option for directory?
     if len(sys.argv) < 2:
-        sys.exit("Sorry, I need a topic name - just one!")
+        sys.exit("Sorry, I need a topic name")
     mktopic(sys.argv[1:])
