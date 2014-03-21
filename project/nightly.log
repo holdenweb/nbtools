@@ -1,0 +1,43 @@
+Copying outline
+Creating statistics
+   Content Analysis
+   Unstarted topics
+   Orphaned notebooks
+Generating and transferring notebooks
+Built output notebook introducing-the-ipython-notebook
+Built output notebook tuples
+Built output notebook dicts-and-sets
+Built output notebook slicing
+Built output notebook regular-expressions
+Built output notebook the-python-iteration-protocol
+Built output notebook generator-functions
+Built output notebook context-managers
+Built output notebook importing-modules
+Built output notebook what-happens-when-the-interpreter-starts
+Built output notebook how-import-works
+Built output notebook more-about-functions
+Built output notebook the-function-api-signatures-and-specifications
+Built output notebook introducing-decorators
+Built output notebook reading-and-writing-files
+Built output notebook handling-filenames
+Built output notebook the-python-dbapi
+Built output notebook the-requests-library
+Built output notebook using-json-data
+Built output notebook what-is-unicode
+Built output notebook bytearrays-and-bytestrings
+Built output notebook decoding-to-unicode
+Built output notebook encoding-from-unicode
+Built output notebook mock-objects
+Built output notebook names-to-avoid-and-why
+Done
+---------------------------
+[master b2b5ec3] Nightly dump for 2014-03-21 00:38
+ 28 files changed, 2273 insertions(+), 876 deletions(-)
+ rewrite nbstats.txt (100%)
+ rewrite notebooks/how-import-works.ipynb (74%)
+ rename notebooks/{how-import-works.ipynb => importing-modules.ipynb} (78%)
+ create mode 100644 notebooks/introducing-decorators.ipynb
+ create mode 100644 notebooks/more-about-functions.ipynb
+ create mode 100644 notebooks/names-to-avoid-and-why.ipynb
+ create mode 100644 notebooks/the-function-api-signatures-and-specifications.ipynb
+ create mode 100644 notebooks/the-requests-library.ipynb
