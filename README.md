@@ -13,9 +13,6 @@ Those in the Portland area can sign up for in-person review sessions that focus 
 
 NOTE: Please be aware there is no guarantee this software will be released under an open source license, though the matter of licensing will be kept under review.  
 
-#### Project Structure
-
-
 Each project should be maintained as a directory containing the following items:
 
   * `outline.txt`, the indented and annotated table of contents
@@ -28,9 +25,6 @@ Each project should be maintained as a directory containing the following items:
   * A `tools` directory containing the utility sources
 
 Any other directories you find in there are not yet a permanent part of the project structure.
-
-#### Available Utilities
-
 
 __`topics.py`__  
 This program reports on the state of the outline. The optional list of words will limit the output to topics containing all those words. You can also get a list of _orphaned_ files, which do not correspond to any title not included in the outline. 
@@ -70,13 +64,13 @@ First you need to have a Google account (which is also your Notebook Cloud Serve
 ___Signing Up for Notebook Cloud Services___  
 All the computing you need to evaluate these notebooks (and a whole bunch more!) can be accomplished with virtuals that qualify for Amazon's free-tier pricing. Free-tier remains free for the first twelve months, and it's unlikely anything you do will exceed the very generous limits. To sign up for an AWS account:
 
-  * Visit the [Amazon AWS home page](http://aws.amazon.com) 
+  * Visit the <a href="http://aws.amazon.com" target="_blank">Amazon AWS home page</a> 
   * Click the “Sign Up” link
   * Enter an email address, select “I am a new user” and click “Sign in ..”
 
 Once you have opened your account (there's the usual "please confirm" email with a link) you need to sign up with Notebook Cloud, a Google AppSpot application that uses AWS services on your behalf to create virtual machines running the IPython Notebook server on demand.
 
-  * Visit the [notebook cloud](http://notebookcloud.appspot.com) home page
+  * Visit the <a href="http://notebookcloud.appspot.com" target="_blank">notebook cloud</a> home page
   * Take a quick look at the simple documentation
   * Click "Log in with Google Account"
   * Once logged in, click the "Account Details" button,
