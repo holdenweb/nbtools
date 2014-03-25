@@ -17,9 +17,15 @@ from lib import nullstrip, slugify, get_project_dir
 # -t template would be nice, but this will do for now
 # src_template = template_env.get_template("base.ipynb")
 
+def matching(word, title_words):
+    # The empty word is always present
+    if not len(word):
+        return True
+    return any(word in tword for tword in title_words)
+
 def get_topics():
     topics = []
-    for line in nullstrip(open("outline.txt")):
+    for line in nullstrip(open("project/outline.txt")):
         topics.append(line.strip().rstrip(" *"))
     return topics
 
@@ -34,9 +40,9 @@ def topic_and_file(words, exists=True):
     slugs = [slugify(topic.strip()) for topic in topics]
     for title, slug in zip(topics, slugs):
         title_words =  set([word.lower() for word in title.split()])
-        if all((word in title_words) for word in search_words): 
+        if all(matching(word, title_words) for word in search_words):
             if (exists is None) or (os.path.exists(
-                os.path.join("nbsource", slug+".ipynb")) != exists):
+                os.path.join("project", "nbsource", slug+".ipynb")) != exists):
                 print(title)
 
 def orphaned_topic_files():
@@ -47,7 +53,7 @@ def orphaned_topic_files():
     file_slugs = [os.path.splitext(os.path.basename(f))[0] for f in filenames]
     for slug in file_slugs:
         if slug not in slugs:
-            print(os.path.join("nbsource", slug+".ipynb"))
+            print(os.path.join("project", "nbsource", slug+".ipynb"))
 
 if __name__ == "__main__":
     # possible -d option for directory?
@@ -71,6 +77,6 @@ if __name__ == "__main__":
         orphaned_topic_files()
     else:
         topic_list = slugify(" ".join(sys.argv[1:])).split("-")
-        if topic_list == [""]: # Annoying special case?
-            topic_list = [] 
+#        if topic_list == [""]: # Annoying special case?
+#            topic_list = [] 
         topic_and_file(topic_list, exists=exists)

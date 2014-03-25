@@ -72,7 +72,7 @@ Importing Modules
 #
 More About Functions
     The Function API - Signatures and Specifications
-    Functions as Function Arguments
+    Functions and classes as Function Arguments
     Generality of Function Return Values
     Introducing Decorators
 #
