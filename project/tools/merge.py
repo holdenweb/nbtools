@@ -48,18 +48,19 @@ snippet_list = []
 top_level_snippets = []
 for line in nullstrip(open("outline.txt", "r")):
     assert len(snippet_stack), "Nothing on the stack!"
-    title = line.strip().rstrip(" *")
+    name_of_article = line.strip().rstrip(" *")
     indent = (len(line)-len(line.lstrip()))
     if indent > indent_stack[-1]: # Lower level than previous
         indent_stack.append(indent)
         snippet_stack.append(last_snippet)
-    while indent < indent_stack[-1]:
-        indent_stack.pop()
-        snippet_stack.pop()
-        if indent > indent_stack[-1]:
-            sys.exit("Mismatched indentation on", title)
-    slug = slugify(title)
-    snippet = Snippet(title=title, slug=slug, indent_level=len(indent_stack),
+    else:
+        while indent < indent_stack[-1]:
+            indent_stack.pop()
+            snippet_stack.pop()
+            if indent > indent_stack[-1]:
+                sys.exit("Mismatched indentation on", name_of_article)
+    slug = slugify(name_of_article)
+    snippet = Snippet(title=name_of_article, slug=slug, indent_level=len(indent_stack),
                       section=False, snippets=[])
     slug_snippets[slug] = snippet
     snippet_stack[-1].snippets.append(snippet)
@@ -68,6 +69,7 @@ for line in nullstrip(open("outline.txt", "r")):
     if snippet.indent_level == 1:
         top_level_snippets.append(snippet)
     last_snippet = snippet
+    assert top_level_snippets == root_snippet.snippets
 
 # Establish jinja templating environment
 template_env = Environment(loader=FileSystemLoader("data/templates"))
@@ -77,10 +79,10 @@ src_template = template_env.get_template("source_base.ipynb")
 # Regenerate them if their source notebook
 # is newer than the target - make is on the horizon.
 # This code should be migrated away from sanity.py.
-file_slug_list = [os.path.split(
-                    os.path.dirname(name))[1]
-                            for name in glob(os.path.join(
-                                "notebooks", "*.ipynb"))]
+file_slug_list = []
+for name in glob(os.path.join("notebooks", "*.ipynb")):
+    file_slug_list.append(os.path.split(os.path.dirname(name))[1])
+    
 for slug in slug_list:
     now = datetime.datetime.today()
     nb_name = slug+".ipynb"
