@@ -12,6 +12,8 @@ from os.path import basename # to strip off file extension before re-adding it :
 from glob import glob
 from lib import get_project_dir
 
+worksheet = notebook.worksheets[0] # this should probably go elsewhere
+
 def mdstrip(paths)
 	for path in paths:
 		if os.path.isdir(path):
@@ -19,8 +21,8 @@ def mdstrip(paths)
 		else:
             files = [path]
         for in_file in files:
-            importednb = open(in_file), "ipynb"
-        	oldnb = basename(importednb) # will this work since we set var to entire
+           	input_nb = nbf(open(in_file), "ipynb")
+        	importednb = basename(in_file) # will this work since we set var to entire
         								 # filename, not file.ipynb?
             # read CELLS rather than lines - will be same?
             for cell in worksheet.cells:
