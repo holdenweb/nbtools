@@ -114,7 +114,7 @@ for slug in slug_list:
         # we read in the newly-created notebook and
         # manipulate its structure according to the
         # pragmas found in the various cells.
-        # Right now there's just one pragma (#!cells)
+        # Right now there's just one pragma (#!content)
         # that says "put all that shit in here".
         dst_nb = nbf.read(open(dst_file, 'r'), "ipynb")
         dst_worksheets = dst_nb.worksheets
