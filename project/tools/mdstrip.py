@@ -7,34 +7,48 @@ without grabbing headers/markdown (most importantly the md)
 NOTE: may want to grab the headers after all, or define new ones?"""
 
 import os
-import sys # for sys.argv
 import IPython.nbformat.current as nbf
-import datetime
 from os.path import basename # to strip off file extension before re-adding it :)
 from glob import glob
-from lib import get_project_dir
-from shutil import copyfileobj # to copy pieces
-from mktopic import mktopic # to make new nb
+from lib import get_project_dir, nullstrip, slugify
+import sys
+
 
 def mdstrip(paths):
     for path in paths:
-    
+
         if os.path.isdir(path):
             files = glob(os.path.join(path, "*.ipynb"))
         else:
             files = [path]
-        
+            
+        outline = nullstrip(open("outline.txt"))
+        slug_dict = {}
+        for line in outline:
+            title = line.strip().rstrip(" *")
+            slug = slugify(title)
+            slug_dict[slug] = title
+
         for in_file in files:
             print ("processing file:", in_file)
             input_nb = nbf.read(open(in_file), "ipynb")
             worksheet = input_nb.worksheets[0]
             input_nb_name = basename(in_file)
-            cell_list = []
+            slug = input_nb_name[:-6]
+            print (slug)
+            if slug not in slug_dict:
+                continue
+            source_lines = ["""## <img src="https://dl.dropboxusercontent.com/u/6117375/"""
+                            """intermediate-notebooks/title_graphic.png" /> {}\n""".format(slug_dict[slug])]
+            cell_list = [nbf.new_text_cell(cell_type="markdown", source=source_lines)]
+            # add graphic here & append to cell_list
 
             for cell in worksheet.cells:
                 if cell.cell_type == ("code"):
+                    cell["outputs"] = []
                     cell_list.append(cell)
             output_nb = nbf.new_notebook()
+            print (os.path.abspath(os.path.join("code_nbs", input_nb_name)))
             output_nb_name = os.path.join("code_nbs", input_nb_name)
             output_nb.worksheets.append(nbf.new_worksheet(cells=cell_list))
             
