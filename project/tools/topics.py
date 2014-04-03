@@ -1,9 +1,20 @@
 #!/usr/bin/env python
 #
-# topisc.py
+# topics.py
 #
-# Make a notebook for a new topic
+# A program to correspond notebook titles to outline topics.
 #
+# # # edit, from the README:
+"""This program reports on the state of the outline. 
+- tools/topics.py [word ...] lists all topics in the outline for 
+    which there is a source notebook.
+- tools/topics.py -a [word ...] lists all topics.
+- tools/topics.py -u [word ...] lists topics for which there is 
+    currently no source notebook.
+- tools/topics.py -o lists orphaned notebooks, i.e. files for which there
+    is currently no corresponding topic in the outline."""
+
+
 from glob import glob
 import os
 import sys
