@@ -1,11 +1,18 @@
 #!/usr/bin/env python
 #
-# nbrstats.py: report some statistics on a collection of notebooks
+# nbstats.py: report some statistics on a collection of notebooks
 #
 """\
-This program reads all the notebooks whose names are passed as arguments
-(or if no arguments are given, all ".ipynb" files in the current 
-directory) and provides information about the content that will
+If no arguments are provided then all notebook files in the "nbsource"
+subdirectory of the project directory (determined by accessing the
+SCAM_PROJECT environment variable if it exists, otherwise the current 
+directory).
+
+If a directory is passed as a single argument then all ".ipynb" files
+in that directory are processed. Otherwise all arguments are
+processed as notebook files. 
+
+The program provides information about the content that will
 hopefully give a useful measure of content growth as time passes by."""
 
 import os
@@ -72,10 +79,13 @@ def get_lines_and_bytes(source):
     return lines, bytes
 
 if __name__ == "__main__":
-    os.chdir(os.path.join(get_project_dir(), "nbsource"))
-    if len(sys.argv) > 1:
-        paths = sys.argv[1:]
-    else:
+    if len(sys.argv) == 1:
+        os.chdir(os.path.join(get_project_dir(), "nbsource"))
         paths = glob("*.ipynb")
+    elif len(sys.argv) == 2 and os.path.isdir(sys.argv[1]):
+        os.chdir(sys.argv[1])
+        paths = glob("*.ipynb")
+    else:
+        paths = sys.argv[1:]
     nbstats(paths)
     
