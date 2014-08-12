@@ -25,8 +25,10 @@ def matching(word, title_words):
 
 def get_topics():
     topics = []
-    for line in nullstrip(open("project/outline.txt")):
-        topics.append(line.strip().rstrip(" *"))
+    for line in nullstrip(open("outline.txt")):
+        line = line.rstrip().rstrip(" *")
+        sline = line.lstrip()
+        topics.append((sline, len(line)-len(sline)))
     return topics
 
 def topic_and_file(words, exists=True):
@@ -37,23 +39,22 @@ def topic_and_file(words, exists=True):
             None: don't care."""
     search_words = [word.lower() for word in words]
     topics = get_topics()
-    slugs = [slugify(topic.strip()) for topic in topics]
-    for title, slug in zip(topics, slugs):
+    slugs = [slugify(topic[0].strip()) for topic in topics]
+    for (title, indent), slug in zip(topics, slugs):
         title_words =  set([word.lower() for word in title.split()])
         if all(matching(word, title_words) for word in search_words):
             if (exists is None) or (os.path.exists(
                 os.path.join("project", "nbsource", slug+".ipynb")) != exists):
-                print(title)
+                print(" "*indent+title)
 
 def orphaned_topic_files():
     topics = get_topics()
-    slugs = [slugify(topic.strip()) for topic in topics]
-    slug_topic = {slug: filename for (slug, filename) in zip(slugs, topics)}
+    slugs = [slugify(topic[0].strip()) for topic in topics]
     filenames = glob(os.path.join("nbsource", "*.ipynb"))
     file_slugs = [os.path.splitext(os.path.basename(f))[0] for f in filenames]
-    for slug in file_slugs:
-        if slug not in slugs:
-            print(os.path.join("project", "nbsource", slug+".ipynb"))
+    for slug in slugs:
+        comment = " ***" if slug not in file_slugs else ""
+        print(os.path.join("project", "nbsource", slug+'.ipynb'), comment)
 
 if __name__ == "__main__":
     # possible -d option for directory?
@@ -68,7 +69,7 @@ if __name__ == "__main__":
             exists = None
         else:
             import sys
-            sys.exit("topic.py [-d | -u | -a] [List of words]")
+            sys.exit("topics.py [-o | -u | -a] [List of words]")
         del sys.argv[1]
 
     os.chdir(get_project_dir())
