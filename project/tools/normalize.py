@@ -8,7 +8,6 @@ NOTE: may want to grab the headers after all, or define new ones?"""
 
 import os
 import IPython.nbformat.current as nbf
-from os.path import basename # to strip off file extension before re-adding it :)
 from glob import glob
 from lib import get_project_dir
 import sys
@@ -25,21 +24,17 @@ def normalize(in_file, out_file):
             cell.outputs = []
             cell.prompt_number = ""
         cell_list.append(cell)
-
+    output_nb = nbf.new_notebook() # XXX should set name ...
     output_nb.worksheets.append(nbf.new_worksheet(cells=cell_list))
-    
+    nbf.write(output_nb, out_file, "ipynb")
+
 
 if __name__ == "__main__":
-    os.chdir(get_project_dir())
-    if len(sys.argv) > 1:
-        paths = sys.argv[1:]
+    if len(sys.argv) == 3:
+        infile = open(sys.argv[1])
+        outfile = open(sys.argv[2],"w")
     else:
-        paths = glob("*.ipynb")
-    for input_nb_name in paths:
-        # print ("processing file:", in_file)
-        input_nb = nbf.read(open(input_nb_name), "ipynb")
-        output_nb = nbf.new_notebook()
-        output_nb_name = input_nb_name[:-6]+".min.ipynb"
-        normalize(input_nb, output_nb)
-        with open(output_nb_name, 'w') as f:
-            nbf.write(output_nb, f, "ipynb")
+        infile = sys.stdin
+        outfile = sys.stdout
+    
+    normalize(nbf.read(infile, "ipynb"), sys.stdout)
