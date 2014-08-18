@@ -33,8 +33,12 @@ if __name__ == "__main__":
     if len(sys.argv) == 3:
         infile = open(sys.argv[1])
         outfile = open(sys.argv[2],"w")
+    elif len(sys.argv) != 1:
+        sys.exit("normalize: two arguments or none, please")
     else:
         infile = sys.stdin
         outfile = sys.stdout
-    
-    normalize(nbf.read(infile, "ipynb"), sys.stdout)
+    try:
+        normalize(nbf.read(infile, "ipynb"), outfile)
+    except Exception as e:
+        sys.exit("Normalization error: '{}'".format(str(e)))
