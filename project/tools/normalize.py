@@ -13,6 +13,9 @@ import json
 import os
 import sys
 
+if sys.version[0] != "3":
+    sys.exit("This is currently a Python 3 program")
+
 import IPython.nbformat.current as nbf
 
 from lib import get_project_dir
