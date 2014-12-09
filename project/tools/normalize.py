@@ -9,7 +9,7 @@ NOTE: may want to grab the headers after all, or define new ones?"""
 
 from glob import glob
 import io
-import json
+import simplejson as json
 import os
 import sys
 
